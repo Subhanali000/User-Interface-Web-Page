@@ -1,0 +1,77 @@
+# User-Interface Webpage
+
+## Overview
+This project is a User-Interface Web Application built using WordPress, supported by HTML, CSS, JavaScript, and PHP. The project utilizes XAMPP as the local development environment for managing the web server and database.
+
+## Features
+- **WordPress Integration**: Built on WordPress for content management and plugin support.
+- **HTML & CSS**: Provides the structure and styling for the web pages.
+- **JavaScript**: Adds interactivity and dynamic functionality.
+- **PHP**: Handles server-side scripting for backend tasks.
+- **XAMPP**: A local development environment to host and test the application.
+
+## Prerequisites
+To run this project, you need:
+- **XAMPP**: Installed and running (includes Apache and MySQL).
+- **WordPress**: Installed in the XAMPP htdocs directory.
+- **A modern web browser** for testing.
+
+## Installation and Setup
+1. **Install WordPress on XAMPP**
+   - Download the latest version of WordPress from the official website.
+   - Extract the WordPress folder into the htdocs directory of your XAMPP installation. Example path: `C:\xampp\htdocs\project-name`
+2. **Start XAMPP**
+   - Open the XAMPP Control Panel.
+   - Start the Apache and MySQL modules.
+3. **Set Up the Database**
+   - Open phpMyAdmin at `http://localhost/phpmyadmin`.
+   - Create a new database (e.g., `project_name`).
+   - Import the provided .sql file:
+     - Click on the Import tab in phpMyAdmin.
+     - Select the .sql file and click Go.
+4. **Configure WordPress**
+   - Open the `wp-config.php` file in the WordPress folder.
+   - Update the database details:
+     ```php
+     define( 'DB_NAME', 'project_name' );
+     define( 'DB_USER', 'root' );
+     define( 'DB_PASSWORD', '' ); // Default for XAMPP
+     define( 'DB_HOST', 'localhost' );
+     ```
+   - Save the file.
+5. **Access the Application**
+   - Open your browser and navigate to:
+     ```arduino
+     http://localhost/project-name
+     ```
+   - Follow the WordPress setup wizard if needed.
+
+## File Structure
+- **WordPress Files**: Standard WordPress files, including `wp-content`, `wp-admin`, and `wp-includes`.
+- **Custom Theme/Plugin**: If a custom WordPress theme or plugin was used, it can be found in the `wp-content/themes` or `wp-content/plugins` directories.
+- **SQL File**: Database schema for importing into phpMyAdmin.
+
+## Usage
+- Ensure XAMPP is running.
+- Access the application via `http://localhost/project-name`.
+- Log in to the WordPress admin panel to manage content or customize settings:
+  ```arduino
+  http://localhost/project-name/wp-admin
+  ```
+
+## Contribution Guidelines
+1. Fork the repository.
+2. Create a feature branch:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Description of changes"
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature-name
+   ```
+5. Create a pull request.
+

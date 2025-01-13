@@ -1,0 +1,745 @@
+body {
+    height: auto;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+.container {
+    width: auto;
+    margin: 0 auto;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+/* Main Content */
+#main {
+    color: #33c1ff;
+    transition: margin-left 0.5s; /* Smooth transition when sidebar opens */
+    padding: 16px;
+}
+
+#learnMoreBtn {
+    position: absolute; /* Use absolute positioning */
+    top: 15px; /* Position it 10px from the top of the page */
+    left: 370px; /* Position it 10px from the left of the page */
+}
+
+#main #learnMoreBtn {
+    display: flex;
+    cursor: pointer;
+    padding: 15px 17px;
+    border: 3px solid black;
+    color: #c0392b;
+    border-radius: 10px;
+    background-color: #f6f6f7;
+}
+
+/* Search Box */
+.search-box {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 70px; /* Adjust to match your header height */
+    right: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+.search-box input {
+    padding: 8px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.search-box button {
+    padding: 8px 12px;
+    margin-left: 5px;
+    background-color: #111;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.search-box button:hover {
+    background-color: #444;
+}
+
+/* Open Button */
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}
+
+.openbtn:hover {
+    background-color: #444;
+}
+
+/* Header and Navigation Styles */
+header {
+    background-color: #fefefe;
+    padding-top: 2px;
+    text-align: right;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex; /* Added for horizontal layout */
+    justify-content: space-between; /* Space between items */
+    align-items: center; /* Center items vertically */
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 20px; /* Increased margin for spacing */
+}
+
+header nav ul li a {
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  text-decoration: none;
+}
+
+header nav ul li a:hover {
+  user-select: none;
+  font-weight: bolder;
+  list-style: none;
+}
+header nav a.logo {
+    width: 7.7rem;
+    height: 2.6rem;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 4rem;
+    margin-right: 9rem;
+    cursor: pointer;
+    z-index: 1000;
+    user-select: none;
+    background-image: url("/Project/logo.png");
+    background-size: cover;
+}
+
+/* Separator Style */
+hr {
+    border: 2px solid rgb(129, 111, 243);
+    background-color: aqua;
+}
+
+footer {
+    height: 35px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    padding: 1em 1en;
+}
+
+/* Dropdown Container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown content */
+.dropdown-content {
+    display: none;
+    text-align: center;
+    position: absolute;
+    top: 100%; /* Position it below the navbar */
+    left: 50%;
+    transform: translateX(-50%); /* Center the dropdown horizontally */
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 12px 16px;
+    border-radius: 4px;
+}
+
+/* Show the dropdown content on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Optional styles for the links in dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color on hover */
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* Search Icon */
+.search-icon {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    background-image: url("/Project/bg icon serach bar.png");
+    background-size: cover;
+    cursor: pointer;
+}
+
+/* Hidden Search Box */
+.search-box {
+    display: none;
+    position: absolute;
+    right: 60px;
+    top: 40px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Show Search Box on Toggle */
+.search-box.active {
+    display: block;
+}
+
+.latest ul {
+    list-style: none;
+    width: 34%;
+    padding: 0;
+    display: flex; /* Arrange items in a row */
+}
+
+.latest ul li {
+    margin: 15px;
+    font-size: auto;
+    cursor: pointer; /* Space between list items */
+    padding: 10px 20px; /* Padding inside each list item */
+    background-color: #ffffff;
+    border: 1px solid #0c0b0b;
+    transition: background-color 0.3s;
+    color: rgb(27, 17, 17); /* Make text inside the box white */
+}
+
+.latest ul li:hover {
+    background-color: #9b43ed; /* Change background color on hover */
+    color: rgb(255, 255, 255); /* Change text color on hover */
+}
+
+.latest-item {
+    border: 2px solid #0c0b0b;
+    color: #ff5733;
+}
+
+.most-popular {
+    color: #33c1ff;
+}
+
+.editors-picks {
+    color: #8e44ad;
+}
+
+/* Upload Article Form Styling */
+#articleForm {
+    position: absolute; /* Keeps the form centered even on scroll */
+    top: 25rem;
+    left: 45rem;
+    transform: translate(-50%, -50%);
+    width: 90rem; /* Adjust to fit smaller screens */
+    max-width: 500px; /* Limit the maximum width */
+    background-color: #e7e9e3; /* Subtle background for better readability */
+    padding: 100px 30px;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Ensures inputs span full width */
+}
+
+/* Label Styling */
+#articleForm label {
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Input and Textarea Styling */
+#articleForm input,
+#articleForm .articleContent {
+    width: 95%;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: 2px solid #000000;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: #fff;
+}
+
+#articleContent {
+    padding-bottom: 60%;
+    border-radius: 3px;
+    border: 2px solid #000000;
+}
+
+/* Input Focus Effect */
+#articleForm input:focus,
+#articleForm textarea:focus {
+    border-color: #ea00d7;
+    outline: none;
+    box-shadow: 2px 0px 5px rgba(32, 235, 150, 0.5);
+}
+
+/* Button Styling */
+#articleForm button {
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    align-self: center; /* Center the button horizontally */
+    padding: 3%;
+    width: 35%;
+    background-color: #6200ea;
+    color: white;
+    font-size: 16px;
+    border: 0em solid rgb(252, 250, 250);
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 30px;
+    box-shadow: 0px 8px 6px rgb(51, 50, 58);
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Button Hover Effect */
+#articleForm button:hover {
+    background-color: #4500b8;
+}
+
+/* Cancel Button */
+#articleForm .cancel-btn {
+    background-color: #e74c3c;
+}
+
+#articleForm .cancel-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Styling for the article container */
+.article-container {
+    justify-content: center;
+    justify-self: center;
+    width: auto; /* Allow the container width to adjust according to content */
+    max-width: 45%; /* Optional: Set a maximum width if you want to limit the size */
+    margin-left: auto; /* Align the container to the right side */
+    margin-right: 0; /* Ensure there's no margin on the right */
+    padding: 20px; /* Add padding inside the container */
+    background-color: #f4f4f4; /* Optional: Add background color for visibility */
+    box-sizing: border-box; /* Include padding and borders in the element's total width/height */
+}
+
+/* Styling for the articles section */
+#articles {
+    display: block; /* Make sure it's block-level to adjust size */
+    font-size: 16px; /* Set a base font size for readability */
+    line-height: 1.5; /* Adjust line spacing */
+}
+
+/* Responsive adjustments */
+
+/* General Styles for smaller screens */
+@media (max-width: 1024px) {
+    body {
+        font-size: 16px; /* Slightly smaller font for tablets and smaller devices */
+    }
+
+    /* Header and Navigation */
+    header nav ul {
+        flex-direction: column; /* Stack navbar items vertically */
+        align-items: flex-start; /* Align navbar items to the left */
+    }
+
+    header nav ul li {
+        margin: 10px 0; /* Adjust margin between items */
+    }
+
+    header nav ul li a {
+        font-size: 18px; /* Smaller font size */
+        padding: 8px; /* Adjust padding for smaller screens */
+    }
+
+    header nav a.search-icon {
+        margin-left: 3rem;
+        padding: 2px;
+    }
+
+    header nav a.logo {
+        margin-left: auto;
+        width: 9.5rem;
+        height: 2.6rem;
+    }
+
+    /* Search Box */
+    .search-box {
+        width: 30%; /* Make the search box occupy full width */
+        position: relative;
+        top: 10px; /* Position below the header */
+        right: 0;
+    }
+
+    .search-box input {
+        width: 90%; /* Make the search input take up more space */
+        padding: 8px;
+    }
+
+    .search-box button {
+        padding: 6px 10px; /* Smaller padding */
+        font-size: 14px; /* Adjust button font size */
+    }
+
+    hr {
+        width: auto;
+    }
+
+    /* Upload Article Form Styling */
+    #articleForm {
+        position: absolute;
+        top: 30rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%; /* Make form smaller */
+        max-width: 450px; /* Max width for the form */
+        background-color: #e7e9e3;
+        padding: 50px 30px; /* Adjust padding */
+        border-radius: 10px;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        z-index: 1000;
+    }
+
+    #articleForm input,
+    #articleForm .articleContent {
+        width: 94%;
+        padding: 8px 12px; /* Smaller padding */
+        margin-bottom: 15px;
+    }
+
+    /* Adjust Input Focus */
+    #articleForm input:focus,
+    #articleForm textarea:focus {
+        border-color: #ea00d7;
+        outline: none;
+        box-shadow: 2px 0px 5px rgba(32, 235, 150, 0.5);
+    }
+
+    #articleForm button {
+        padding: 3%;
+        width: 50%; /* Make button smaller */
+        background-color: #6200ea;
+        color: white;
+        font-size: 14px; /* Smaller button text */
+        margin-top: 20px;
+        box-shadow: 0px 8px 6px rgb(51, 50, 58);
+    }
+
+    /* Button Hover Effect */
+    #articleForm button:hover {
+        background-color: #4500b8;
+    }
+
+    /* Cancel Button */
+    #articleForm .cancel-btn {
+        background-color: #e74c3c;
+    }
+
+    #articleForm .cancel-btn:hover {
+        background-color: #c0392b;
+    }
+
+    /* Sidebar Styles (Mobile) */
+    .sidebar {
+        width: 0px; /* Smaller sidebar */
+    }
+
+    /* Latest Articles */
+    .latest ul {
+        display: flex;
+        flex-direction: column; /* Stack items vertically */
+    }
+
+    .latest ul li {
+        margin: 10px 0;
+        font-size: 14px;
+        padding: 10px 20px;
+        background-color: #ffffff;
+        border: 1px solid #0c0b0b;
+    }
+
+    /* Search Icon Position */
+}
+
+/* General Styles for mobile screens */
+@media (max-width: 768px) {
+    body {
+        width: auto;
+        font-size: 14px; /* Make font smaller */
+    }
+
+    /* Header and Navigation */
+    header nav ul {
+        margin-left: 2rem;
+        flex-direction: column; /* Stack navbar items vertically */
+        align-items: flex-start; /* Align navbar items to the left */
+    }
+
+    header nav ul li {
+        margin: 10px 0; /* Adjust margin between items */
+    }
+
+    header nav ul li a {
+        font-size: 16px; /* Smaller font size */
+        padding: 8px; /* Adjust padding for smaller screens */
+    }
+
+    header nav a.search-icon {
+        margin-left: 2rem;
+        padding: 1px;
+    }
+
+    /* Search Box */
+    .search-box {
+        width: 70%; /* Make the search box occupy full width */
+        position: relative;
+        top: 10px; /* Position below the header */
+        right: 0;
+    }
+
+    .search-box input {
+        width: 90%; /* Make the search input take up more space */
+        padding: 8px;
+    }
+
+    .search-box button {
+        padding: 6px 10px; /* Smaller padding */
+        font-size: 14px; /* Adjust button font size */
+    }
+
+    /* Upload Article Form Styling */
+    #articleForm {
+        position: absolute;
+        top: 30rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%; /* Make form smaller */
+        max-width: 450px; /* Max width for the form */
+        background-color: #e7e9e3;
+        padding: 40px 30px; /* Adjust padding */
+        border-radius: 10px;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        z-index: 1000;
+    }
+
+    #articleForm input,
+    #articleForm .articleContent {
+        width: 93%;
+        padding: 8px 12px; /* Smaller padding */
+        margin-bottom: 15px;
+    }
+
+    #articleForm button {
+        padding: 3%;
+        width: 50%; /* Make button smaller */
+        background-color: #6200ea;
+        color: white;
+        font-size: 14px;
+        margin-top: 20px;
+        box-shadow: 0px 8px 6px rgb(51, 50, 58);
+    }
+
+    /* Button Hover Effect */
+    #articleForm button:hover {
+        background-color: #4500b8;
+    }
+
+    /* Search Icon Position */
+    header nav a.search {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        background-size: cover;
+        width: 24px; /* Resize the search icon */
+        height: 24px;
+        background-image: url("/assets/bg\ icon\ serach\ bar.png");
+    }
+
+    /* Sidebar Styles */
+
+    /* Latest Articles */
+    .latest ul {
+        display: flex;
+        flex-direction: column; /* Stack items vertically */
+    }
+
+    .latest ul li {
+        margin: 10px 0;
+        font-size: 14px;
+        padding: 10px 20px;
+        background-color: #ffffff;
+        border: 1px solid #0c0b0b;
+    }
+}
+
+/* General Styles for very small screens (480px) */
+@media (max-width: 480px) {
+    body {
+        font-size: 12px; /* Make font smaller for smaller screens */
+    }
+
+    /* Header and Navigation */
+    header nav ul {
+        flex-direction: column; /* Stack navbar items vertically */
+        align-items: flex-start; /* Align navbar items to the left */
+    }
+
+    header nav ul li {
+        margin: 8px 0; /* Adjust margin between items */
+    }
+
+    header nav ul li a {
+        margin-left: 2rem;
+        font-size: 14px; /* Smaller font size */
+        padding: 8px; /* Adjust padding for smaller screens */
+    }
+
+    header nav a.search-icon {
+        margin-left: 2rem;
+        padding: 0.01rem;
+    }
+
+    hr {
+        width: auto;
+    }
+
+    /* Search Box */
+    .search-box {
+        width: 50%; /* Full width of screen */
+        position: relative;
+        top: 10px;
+        right: 0;
+    }
+
+    .search-box input {
+        width: 90%; /* Make the search input take up more space */
+        padding: 6px;
+    }
+
+    .search-box button {
+        padding: 5px 8px; /* Smaller padding */
+        font-size: 12px; /* Adjust button font size */
+    }
+
+    /* Upload Article Form Styling */
+    #articleForm {
+        position: absolute;
+        top: 35rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%; /* Make form smaller */
+        max-width: 400px; /* Max width for the form */
+        background-color: #e7e9e3;
+        padding: 30px 20px; /* Adjust padding */
+        border-radius: 10px;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        z-index: 1000;
+    }
+
+    #articleForm input,
+    #articleForm .articleContent {
+        width: 90%;
+        padding: 6px 10px; /* Smaller padding */
+        margin-bottom: 15px;
+    }
+
+    #articleForm button {
+        padding: 3%;
+        width: 50%; /* Make button smaller */
+        background-color: #6200ea;
+        color: white;
+        font-size: 12px;
+        margin-top: 15px;
+        box-shadow: 0px 8px 6px rgb(51, 50, 58);
+    }
+
+    /* Button Hover Effect */
+    #articleForm button:hover {
+        background-color: #4500b8;
+    }
+
+    /* Sidebar Styles */
+
+    /* Latest Articles */
+    .latest ul {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .latest ul li {
+        margin: 8px 0;
+        font-size: 12px;
+        padding: 8px 15px;
+        background-color: #ffffff;
+        border: 1px solid #0c0b0b;
+    }
+}
