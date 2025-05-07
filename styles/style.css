@@ -11,7 +11,7 @@ body {
     margin: 0 auto;
 }
 
-/* Sidebar Styles */
+
 .sidebar {
     height: 100%;
     width: 0;
@@ -46,34 +46,20 @@ body {
     margin-left: 50px;
 }
 
-/* Main Content */
+
 #main {
     color: #33c1ff;
-    transition: margin-left 0.5s; /* Smooth transition when sidebar opens */
+    transition: margin-left 0.5s; 
     padding: 16px;
 }
 
-#learnMoreBtn {
-    position: absolute; /* Use absolute positioning */
-    top: 15px; /* Position it 10px from the top of the page */
-    left: 370px; /* Position it 10px from the left of the page */
-}
 
-#main #learnMoreBtn {
-    display: flex;
-    cursor: pointer;
-    padding: 15px 17px;
-    border: 3px solid black;
-    color: #c0392b;
-    border-radius: 10px;
-    background-color: #f6f6f7;
-}
 
-/* Search Box */
+
 .search-box {
-    display: none; /* Hidden by default */
+    display: none; 
     position: absolute;
-    top: 70px; /* Adjust to match your header height */
+    top: 70px; 
     right: 20px;
     background-color: white;
     border: 1px solid #ccc;
@@ -104,7 +90,7 @@ body {
     background-color: #444;
 }
 
-/* Open Button */
+
 .openbtn {
     font-size: 20px;
     cursor: pointer;
@@ -118,7 +104,7 @@ body {
     background-color: #444;
 }
 
-/* Header and Navigation Styles */
+
 header {
     background-color: #fefefe;
     padding-top: 2px;
@@ -128,14 +114,14 @@ header {
 header nav ul {
     list-style: none;
     padding: 0;
-    display: flex; /* Added for horizontal layout */
-    justify-content: space-between; /* Space between items */
-    align-items: center; /* Center items vertically */
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
 }
 
 header nav ul li {
     display: inline;
-    margin: 0 20px; /* Increased margin for spacing */
+    margin: 0 20px; 
 }
 
 header nav ul li a {
@@ -151,22 +137,23 @@ header nav ul li a:hover {
   font-weight: bolder;
   list-style: none;
 }
-header nav a.logo {
-    width: 7.7rem;
-    height: 2.6rem;
+header nav .logo {
+    
+    width: 120px;
+    height: auto; 
     display: inline-block;
     vertical-align: middle;
-    margin-left: 4rem;
-    margin-right: 9rem;
+    margin-left: 5rem;  
+    margin-right: 3rem;
     cursor: pointer;
     z-index: 1000;
     user-select: none;
-    background-image: url("/Project/logo.png");
-    background-size: cover;
-}
+  }
+  
 
-/* Separator Style */
+
 hr {
+    
     border: 2px solid rgb(129, 111, 243);
     background-color: aqua;
 }
@@ -182,20 +169,20 @@ footer {
     padding: 1em 1en;
 }
 
-/* Dropdown Container */
+
 .dropdown {
     position: relative;
     display: inline-block;
 }
 
-/* Dropdown content */
+
 .dropdown-content {
     display: none;
     text-align: center;
     position: absolute;
-    top: 100%; /* Position it below the navbar */
+    top: 100%; 
     left: 50%;
-    transform: translateX(-50%); /* Center the dropdown horizontally */
+    transform: translateX(-50%); 
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
@@ -204,12 +191,12 @@ footer {
     border-radius: 4px;
 }
 
-/* Show the dropdown content on hover */
+
 .dropdown:hover .dropdown-content {
     display: block;
 }
 
-/* Optional styles for the links in dropdown */
+
 .dropdown-content a {
     color: black;
     padding: 8px 16px;
@@ -217,22 +204,25 @@ footer {
     display: block;
 }
 
-/* Change color on hover */
+
 .dropdown-content a:hover {
     background-color: #ddd;
 }
 
-/* Search Icon */
+
 .search-icon {
     width: 30px;
     height: 30px;
+    z-index: 1000;
+    position: relative;
+    right: 34px;
     display: inline-block;
-    background-image: url("/Project/bg icon serach bar.png");
-    background-size: cover;
     cursor: pointer;
-}
+    
+  }
+  
 
-/* Hidden Search Box */
+
 .search-box {
     display: none;
     position: absolute;
@@ -244,7 +234,7 @@ footer {
     border-radius: 5px;
 }
 
-/* Show Search Box on Toggle */
+
 .search-box.active {
     display: block;
 }
@@ -253,23 +243,23 @@ footer {
     list-style: none;
     width: 34%;
     padding: 0;
-    display: flex; /* Arrange items in a row */
+    display: flex;
 }
 
 .latest ul li {
     margin: 15px;
     font-size: auto;
-    cursor: pointer; /* Space between list items */
-    padding: 10px 20px; /* Padding inside each list item */
+    cursor: pointer; 
+    padding: 10px 20px; 
     background-color: #ffffff;
     border: 1px solid #0c0b0b;
     transition: background-color 0.3s;
-    color: rgb(27, 17, 17); /* Make text inside the box white */
+    color: rgb(27, 17, 17); 
 }
 
 .latest ul li:hover {
-    background-color: #9b43ed; /* Change background color on hover */
-    color: rgb(255, 255, 255); /* Change text color on hover */
+    background-color: #9b43ed; 
+    color: rgb(255, 255, 255); 
 }
 
 .latest-item {
@@ -285,41 +275,45 @@ footer {
     color: #8e44ad;
 }
 
-/* Upload Article Form Styling */
 #articleForm {
-    position: absolute; /* Keeps the form centered even on scroll */
+    position: absolute; 
     top: 25rem;
     left: 45rem;
     transform: translate(-50%, -50%);
-    width: 90rem; /* Adjust to fit smaller screens */
-    max-width: 500px; /* Limit the maximum width */
-    background-color: #e7e9e3; /* Subtle background for better readability */
-    padding: 100px 30px;
+    width: 90rem;
+    max-width: 500px; 
+    background-color: #e7e9e3; 
+    padding: 70px 30px;
     border-radius: 10px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
     z-index: 1000;
     display: flex;
     flex-direction: column;
-    align-items: stretch; /* Ensures inputs span full width */
+    align-items: stretch; 
 }
 
-/* Label Styling */
+
 #articleForm label {
     margin-bottom: 8px;
     font-size: 16px;
     color: #333;
 }
 
-/* Input and Textarea Styling */
+
 #articleForm input,
 #articleForm .articleContent {
-    width: 95%;
+    width: 94%;
     padding: 10px 12px;
     margin-bottom: 15px;
     border: 2px solid #000000;
     border-radius: 6px;
     font-size: 14px;
     background-color: #fff;
+    text-align: left; 
+}
+
+#articleForm input::placeholder {
+    text-align: left; 
 }
 
 #articleContent {
@@ -328,20 +322,32 @@ footer {
     border: 2px solid #000000;
 }
 
-/* Input Focus Effect */
+
 #articleForm input:focus,
 #articleForm textarea:focus {
     border-color: #ea00d7;
     outline: none;
     box-shadow: 2px 0px 5px rgba(32, 235, 150, 0.5);
 }
+#articleForm .title {
+    padding: 10px 0;
+    border-radius: 3px;
+    border: 2px solid #000000;
+    text-align: center;
+    margin: 0 auto 20px auto; 
+    width: fit-content;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #fff;
+}
 
-/* Button Styling */
+
+
 #articleForm button {
     justify-content: center;
     display: flex;
     text-align: center;
-    align-self: center; /* Center the button horizontally */
+    align-self: center; 
     padding: 3%;
     width: 35%;
     background-color: #6200ea;
@@ -355,12 +361,12 @@ footer {
     transition: background-color 0.3s ease-in-out;
 }
 
-/* Button Hover Effect */
+
 #articleForm button:hover {
     background-color: #4500b8;
 }
 
-/* Cancel Button */
+
 #articleForm .cancel-btn {
     background-color: #e74c3c;
 }
@@ -369,47 +375,76 @@ footer {
     background-color: #c0392b;
 }
 
-/* Styling for the article container */
+
 .article-container {
-    justify-content: center;
+    display: flex;
+    justify-content: left;
     justify-self: center;
-    width: auto; /* Allow the container width to adjust according to content */
-    max-width: 45%; /* Optional: Set a maximum width if you want to limit the size */
-    margin-left: auto; /* Align the container to the right side */
-    margin-right: 0; /* Ensure there's no margin on the right */
-    padding: 20px; /* Add padding inside the container */
-    background-color: #f4f4f4; /* Optional: Add background color for visibility */
-    box-sizing: border-box; /* Include padding and borders in the element's total width/height */
-}
+    width: 1500px; 
+    max-width: 95%;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 20px; 
+    background-color: #f4f4f4; 
+    box-sizing: border-box;
 
-/* Styling for the articles section */
+
 #articles {
-    display: block; /* Make sure it's block-level to adjust size */
-    font-size: 16px; /* Set a base font size for readability */
-    line-height: 1.5; /* Adjust line spacing */
+    width: 3400px;
+    display: block; 
+    font-size: 16px; 
+    line-height: 1.5; 
 }
+/* Main container */
+/*#main {
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;  Keeps footer at bottom */
+    /* background-color: #f0f0f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+  } */
+}
+  
+  #learnMoreBtn {
+    display: flex;
+    visibility: hidden;
+    padding: 12px 24px;
+    background-color: #007bff; 
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  #learnMoreBtn:hover {
+    background-color: #0056b3;
+  }
+  
 
-/* Responsive adjustments */
 
-/* General Styles for smaller screens */
+
 @media (max-width: 1024px) {
     body {
-        font-size: 16px; /* Slightly smaller font for tablets and smaller devices */
+        font-size: 16px; 
     }
 
-    /* Header and Navigation */
+   
     header nav ul {
-        flex-direction: column; /* Stack navbar items vertically */
-        align-items: flex-start; /* Align navbar items to the left */
+        flex-direction: column; 
+        align-items: flex-start; 
     }
 
     header nav ul li {
-        margin: 10px 0; /* Adjust margin between items */
-    }
+        margin: 10px 0; 
 
     header nav ul li a {
-        font-size: 18px; /* Smaller font size */
-        padding: 8px; /* Adjust padding for smaller screens */
+        font-size: 18px; 
+        padding: 8px; 
     }
 
     header nav a.search-icon {
@@ -423,38 +458,38 @@ footer {
         height: 2.6rem;
     }
 
-    /* Search Box */
+    
     .search-box {
-        width: 30%; /* Make the search box occupy full width */
+        width: 30%; 
         position: relative;
-        top: 10px; /* Position below the header */
+        top: 10px; 
         right: 0;
     }
 
     .search-box input {
-        width: 90%; /* Make the search input take up more space */
+        width: 90%; 
         padding: 8px;
     }
 
     .search-box button {
-        padding: 6px 10px; /* Smaller padding */
-        font-size: 14px; /* Adjust button font size */
+        padding: 6px 10px; 
+        font-size: 14px; 
     }
 
     hr {
         width: auto;
     }
 
-    /* Upload Article Form Styling */
+   
     #articleForm {
         position: absolute;
         top: 30rem;
         left: 50%;
         transform: translateX(-50%);
-        width: 80%; /* Make form smaller */
-        max-width: 450px; /* Max width for the form */
+        width: 80%; 
+        max-width: 450px; 
         background-color: #e7e9e3;
-        padding: 50px 30px; /* Adjust padding */
+        padding: 50px 30px; 
         border-radius: 10px;
         box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
         display: flex;
@@ -466,11 +501,11 @@ footer {
     #articleForm input,
     #articleForm .articleContent {
         width: 94%;
-        padding: 8px 12px; /* Smaller padding */
+        padding: 8px 12px; 
         margin-bottom: 15px;
     }
 
-    /* Adjust Input Focus */
+    
     #articleForm input:focus,
     #articleForm textarea:focus {
         border-color: #ea00d7;
@@ -480,20 +515,20 @@ footer {
 
     #articleForm button {
         padding: 3%;
-        width: 50%; /* Make button smaller */
+        width: 50%; 
         background-color: #6200ea;
         color: white;
-        font-size: 14px; /* Smaller button text */
+        font-size: 14px;
         margin-top: 20px;
         box-shadow: 0px 8px 6px rgb(51, 50, 58);
     }
 
-    /* Button Hover Effect */
+   
     #articleForm button:hover {
         background-color: #4500b8;
     }
 
-    /* Cancel Button */
+    
     #articleForm .cancel-btn {
         background-color: #e74c3c;
     }
@@ -502,15 +537,15 @@ footer {
         background-color: #c0392b;
     }
 
-    /* Sidebar Styles (Mobile) */
+    
     .sidebar {
-        width: 0px; /* Smaller sidebar */
+        width: 0px; 
     }
 
-    /* Latest Articles */
+   
     .latest ul {
         display: flex;
-        flex-direction: column; /* Stack items vertically */
+        flex-direction: column;
     }
 
     .latest ul li {
@@ -521,30 +556,28 @@ footer {
         border: 1px solid #0c0b0b;
     }
 
-    /* Search Icon Position */
+    
+}
 }
 
-/* General Styles for mobile screens */
 @media (max-width: 768px) {
     body {
         width: auto;
-        font-size: 14px; /* Make font smaller */
+        font-size: 14px; 
     }
 
-    /* Header and Navigation */
     header nav ul {
         margin-left: 2rem;
-        flex-direction: column; /* Stack navbar items vertically */
-        align-items: flex-start; /* Align navbar items to the left */
+        flex-direction: column; 
     }
 
     header nav ul li {
-        margin: 10px 0; /* Adjust margin between items */
+        margin: 10px 0; 
     }
 
     header nav ul li a {
-        font-size: 16px; /* Smaller font size */
-        padding: 8px; /* Adjust padding for smaller screens */
+        font-size: 16px; 
+        padding: 8px; 
     }
 
     header nav a.search-icon {
@@ -552,34 +585,34 @@ footer {
         padding: 1px;
     }
 
-    /* Search Box */
+  
     .search-box {
-        width: 70%; /* Make the search box occupy full width */
+        width: 70%; 
         position: relative;
-        top: 10px; /* Position below the header */
+        top: 10px; 
         right: 0;
     }
 
     .search-box input {
-        width: 90%; /* Make the search input take up more space */
+        width: 90%; 
         padding: 8px;
     }
 
     .search-box button {
-        padding: 6px 10px; /* Smaller padding */
-        font-size: 14px; /* Adjust button font size */
+        padding: 6px 10px; 
+        font-size: 14px; 
     }
 
-    /* Upload Article Form Styling */
+    
     #articleForm {
         position: absolute;
         top: 30rem;
         left: 50%;
         transform: translateX(-50%);
-        width: 80%; /* Make form smaller */
-        max-width: 450px; /* Max width for the form */
+        width: 80%; 
+        max-width: 450px; 
         background-color: #e7e9e3;
-        padding: 40px 30px; /* Adjust padding */
+        padding: 40px 30px; 
         border-radius: 10px;
         box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
         display: flex;
@@ -591,13 +624,13 @@ footer {
     #articleForm input,
     #articleForm .articleContent {
         width: 93%;
-        padding: 8px 12px; /* Smaller padding */
+        padding: 8px 12px; 
         margin-bottom: 15px;
     }
 
     #articleForm button {
         padding: 3%;
-        width: 50%; /* Make button smaller */
+        width: 50%; 
         background-color: #6200ea;
         color: white;
         font-size: 14px;
@@ -610,23 +643,22 @@ footer {
         background-color: #4500b8;
     }
 
-    /* Search Icon Position */
     header nav a.search {
         position: absolute;
         right: 10px;
         top: 10px;
         background-size: cover;
-        width: 24px; /* Resize the search icon */
+        width: 24px; 
         height: 24px;
         background-image: url("/assets/bg\ icon\ serach\ bar.png");
     }
 
-    /* Sidebar Styles */
+   
 
-    /* Latest Articles */
+    
     .latest ul {
         display: flex;
-        flex-direction: column; /* Stack items vertically */
+        flex-direction: column; 
     }
 
     .latest ul li {
@@ -638,26 +670,26 @@ footer {
     }
 }
 
-/* General Styles for very small screens (480px) */
+
 @media (max-width: 480px) {
     body {
-        font-size: 12px; /* Make font smaller for smaller screens */
+        font-size: 12px; 
     }
 
-    /* Header and Navigation */
+    
     header nav ul {
-        flex-direction: column; /* Stack navbar items vertically */
-        align-items: flex-start; /* Align navbar items to the left */
+        flex-direction: column; 
+        align-items: flex-start; 
     }
 
     header nav ul li {
-        margin: 8px 0; /* Adjust margin between items */
+        margin: 8px 0; 
     }
 
     header nav ul li a {
         margin-left: 2rem;
-        font-size: 14px; /* Smaller font size */
-        padding: 8px; /* Adjust padding for smaller screens */
+        font-size: 14px; 
+        padding: 8px; 
     }
 
     header nav a.search-icon {
@@ -669,34 +701,32 @@ footer {
         width: auto;
     }
 
-    /* Search Box */
+    
     .search-box {
-        width: 50%; /* Full width of screen */
+        width: 50%; 
         position: relative;
         top: 10px;
         right: 0;
     }
 
     .search-box input {
-        width: 90%; /* Make the search input take up more space */
+        width: 90%; 
         padding: 6px;
     }
 
     .search-box button {
-        padding: 5px 8px; /* Smaller padding */
-        font-size: 12px; /* Adjust button font size */
-    }
+        padding: 5px 8px; 
+        font-size: 12px; 
 
-    /* Upload Article Form Styling */
     #articleForm {
         position: absolute;
         top: 35rem;
         left: 50%;
         transform: translateX(-50%);
-        width: 90%; /* Make form smaller */
-        max-width: 400px; /* Max width for the form */
+        width: 90%; 
+        max-width: 400px; 
         background-color: #e7e9e3;
-        padding: 30px 20px; /* Adjust padding */
+        padding: 30px 20px; 
         border-radius: 10px;
         box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
         display: flex;
@@ -708,13 +738,13 @@ footer {
     #articleForm input,
     #articleForm .articleContent {
         width: 90%;
-        padding: 6px 10px; /* Smaller padding */
+        padding: 6px 10px; 
         margin-bottom: 15px;
     }
 
     #articleForm button {
         padding: 3%;
-        width: 50%; /* Make button smaller */
+        width: 50%; 
         background-color: #6200ea;
         color: white;
         font-size: 12px;
@@ -722,14 +752,11 @@ footer {
         box-shadow: 0px 8px 6px rgb(51, 50, 58);
     }
 
-    /* Button Hover Effect */
     #articleForm button:hover {
         background-color: #4500b8;
     }
 
-    /* Sidebar Styles */
-
-    /* Latest Articles */
+   
     .latest ul {
         display: flex;
         flex-direction: column;
@@ -742,4 +769,5 @@ footer {
         background-color: #ffffff;
         border: 1px solid #0c0b0b;
     }
+}
 }
