@@ -8,23 +8,34 @@
   <link rel="stylesheet" href="styles/style.css" />
 </head>
 
-<body>
+<body style="background-image: url('/img.jpg');">
+
   <header>
     <nav>
       <ul>
         <li>
           <button class="openbtn" onclick="openNav()">☰</button>
         </li>
-        <li><a href="#" class="logo" alt="logo"></a></li>
         <li>
-          <a href="javascript:void(0);" onclick="toggleUploadForm()">Upload An Article</a>
+          <a href="#" class="logo" aria-label="Logo">
+            <img class="logo" src="./logo.png" alt="Logo"
+              style="width: 120px; height: auto; display: inline-block; vertical-align: middle; margin-left: 5rem; margin-right: 3rem; cursor: pointer; z-index: 1000; user-select: none;" />
+          </a>
+        </li>
+
+        <li>
+        <a href="javascript:void(0);" id="uploadToggleLink" onclick="toggleUploadForm()">Upload An Article</a>
           <div id="uploadForm" class="container" style="display: none;">
-            <form class="article_box" id="articleForm" onsubmit="event.preventDefault(); insertArticle();">
-              <input type="text" id="articleAuthor" placeholder="Enter Your Name" required>
-              <input type="text" id="articleTitle" placeholder="Enter title" required>
-              <textarea id="articleContent" placeholder="Enter content" required></textarea>
-              <button id="submitButton" onclick="insertArticle()">Submit</button>
+            <form method="POST" enctype="multipart/form-data" class="article_box" id="articleForm"
+              onsubmit="event.preventDefault(); insertArticle();">
+              <h2 style="display: flex; justify-content: center;">Fill The Details</h2>
+              <input type="text" id="articleAuthor" name="articleAuthor" placeholder="Enter Your Name" required>
+              <input type="text" id="articleTitle" name="articleTitle" placeholder="Enter Title" required>
+              <input type="file" name="image" id="imageInput"><br>
+              <textarea id="articleContent" name="articleContent" placeholder="Enter Content" required></textarea>
+              <button id="submitButton" type="submit">Submit Article</button>
             </form>
+            <img id="imagePreview" style="display:none; max-width: 100%; margin-top: 10px; visibility: hidden;">
           </div>
         </li>
         <li class="dropdown">
@@ -68,7 +79,10 @@
           </div>
         </li>
         <li>
-          <a href="javascript:void(0);" class="search-icon" onclick="toggleSearchBox()"></a>
+          <a href="javascript:void(0);" class="search-icon" onclick="toggleSearchBox()">
+            <img src="./search_bar.png" alt="search icon"
+              style="width: 30px; position: relative; right: 10px; cursor: pointer;" />
+          </a>
         </li>
       </ul>
       <div id="searchBox" class="search-box">
@@ -76,18 +90,17 @@
         <button onclick="performSearch()">Search</button>
       </div>
       <hr />
-      <hr/>
+      <hr />
     </nav>
   </header>
 
   <div id="mySidebar" class="sidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-    <a href="#">Home</a>
+    <a href="index1.php">Home</a>
     <a href="#">About</a>
     <a href="#">Services</a>
     <a href="#">Contact</a>
   </div>
-
   <nav class="latest">
     <ul>
       <li>Latest</li>
@@ -98,14 +111,15 @@
 
   <div class="article-container">
     <div id="articles">
-      <p>Loading...</p>
-      <hr>
+      <!-- Articles will be dynamically inserted here -->
     </div>
+  </div>
   </div>
 
   <div id="main">
     <section id="home">
-      <button id="learnMoreBtn">Message</button>
+      <button id="learnMoreBtn"></button>
+
     </section>
     <footer>
       <p>© 2025 Showcase</p>
