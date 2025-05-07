@@ -1,4 +1,4 @@
-// Utility function for API calls
+
 function callApi(url, options = {}) {
     return fetch(url, options)
         .then(response => {
@@ -11,126 +11,220 @@ function callApi(url, options = {}) {
         });
 }
 
-// Fetch Articles (GET request)
+
+function toggleUploadForm() {
+    const uploadForm = document.getElementById('uploadForm'); 
+    
+    if (uploadForm) {
+        if (uploadForm.style.display === 'none' || uploadForm.style.display === '') {
+            
+            uploadForm.style.display = 'block';
+        } else {
+            
+            clearFormFields();
+           
+            uploadForm.style.display = 'none';
+        }
+    }
+}
+
+
 function fetchArticles() {
     const articlesDiv = document.getElementById('articles');
-    articlesDiv.innerHTML = '<p>Loading...</p>'; // Show loading indicator
+    articlesDiv.innerHTML = '<p>Loading...</p>';
 
     callApi('php/backend.php?action=getArticles')
         .then(data => updateArticlesUI(data))
         .catch(error => {
             console.error('Error fetching articles:', error);
+
+            
             articlesDiv.innerHTML = '<p>Failed to load articles. Please try again later.</p>';
+
+            const errorImage = document.createElement('img');
+            errorImage.src = 'http://localhost:8080/ui/php/uploads/404.jpg';
+            errorImage.alt = 'Error Image';
+            errorImage.style.maxWidth = '100%';
+            errorImage.style.height = '100%';
+            errorImage.style.width = '100%';
+            errorImage.style.borderRadius = '8px';
+
+            
+            articlesDiv.appendChild(errorImage);
         });
 }
 
-// Toggle the visibility of the upload article form
-function toggleUploadForm() {
-    const formContainer = document.getElementById('uploadForm');
-    formContainer.style.display = formContainer.style.display === 'block' ? 'none' : 'block';
-}
-
-document.addEventListener('click', (event) => {
-    const formContainer = document.getElementById('uploadForm');
-    if (formContainer.style.display === 'block' && !formContainer.contains(event.target) && !event.target.closest('a[href="javascript:void(0);"]')) {
-        formContainer.style.display = 'none';
-    }
-});
 
 function insertArticle() {
-    const title = document.getElementById('articleTitle').value.trim();
-    const content = document.getElementById('articleContent').value.trim();
-    const author = document.getElementById('articleAuthor').value.trim();
+    const form = document.getElementById('articleForm');
+    const formData = new FormData(form);
+    
+    const imageInput = document.getElementById('imageInput');
+    const image = imageInput ? imageInput.files[0] : null;
 
-    if (!title || !content || !author) {
-        alert('All fields are required!');
-        return;
+    if (!image) {
+        const confirmContinue = confirm("No image uploaded. Do you want to continue without an image?");
+        if (!confirmContinue) return; 
+    } else {
+        formData.append('image', image); 
     }
 
-    const formData = new FormData();
-    formData.append('title', title);
-    formData.append('content', content);
-    formData.append('author', author);
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'php/backend.php?action=insertArticle', true);
 
-    fetch('php/backend.php?action=insertArticle', {
-        method: 'POST',
-        body: formData
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                alert('Error: ' + data.error);
+    xhr.onload = function () {
+        try {
+            const response = JSON.parse(xhr.responseText);
+            if (xhr.status === 200 && response.message) {
+                alert("Article submitted successfully!");
+
+                
+                if (response.imageUrl) {
+                    const imgPreview = document.getElementById("imagePreview");
+                    imgPreview.src = 'uploads/' + response.imageUrl;  
+                    imgPreview.style.display = "block";  
+                }
+
+               
+                clearFormFields();
+                document.getElementById("submitButton").disabled = false;
+                
+                
+                fetchArticles();
+
+                
+                document.getElementById("uploadForm").style.display = 'none';
             } else {
-                alert(data.message);
-                fetchArticles(); // Refresh the articles list
+                alert("Failed to upload article: " + (response.error || 'Unknown error'));
             }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred. Please try again.');
-        });
+        } catch (e) {
+            alert("Unexpected error during article submission.");
+        }
+    };
 
-    // Clear the form fields
-    clearFormFields(['articleTitle', 'articleContent', 'articleAuthor']);
-    toggleUploadForm();
-    alert('Article submitted successfully!');
+    xhr.onerror = function () {
+        alert("Network error while submitting article.");
+    };
+
+    xhr.send(formData);
+}
+
+function clearFormFields(fieldIds = ['articleTitle', 'articleContent', 'articleAuthor', 'imageInput']) {
+    fieldIds.forEach(id => {
+        const field = document.getElementById(id);
+        if (field) {
+            if (field.type === 'file') {
+                field.value = null; 
+            } else {
+                field.value = '';
+            }
+        }
+    });
+
+    
+    const uploadBtn = document.getElementById("uploadBtn");
+    if (uploadBtn) {
+        uploadBtn.style.display = "inline-block"; 
+        uploadBtn.disabled = false;
+    }
+
+   
+    const preview = document.getElementById("imagePreview");
+    if (preview) {
+        preview.src = '';
+        preview.style.display = "none";
+    }
+
+   
+    const imageInput = document.getElementById("imageInput");
+    if (imageInput) imageInput.disabled = false;
 }
 
 function updateArticlesUI(articles) {
     const articlesDiv = document.getElementById('articles');
-    articlesDiv.innerHTML = ''; // Clear previous content
+    articlesDiv.innerHTML = '';
 
-    // Add the "Articles" title at the top
     const articlesTitle = document.createElement('h2');
     articlesTitle.innerText = 'Articles';
-    articlesDiv.appendChild(articlesTitle); // Add the title to the container
+    articlesDiv.appendChild(articlesTitle);
 
-    if (articles && Array.isArray(articles) && articles.length > 0) {
+    if (Array.isArray(articles) && articles.length > 0) {
         articles.forEach((article, index) => {
             const articleElement = document.createElement('div');
-            articleElement.innerHTML = `
+            articleElement.style.display = 'flex';
+            articleElement.style.alignItems = 'flex-start';
+            articleElement.style.gap = '20px';
+            articleElement.style.marginBottom = '30px';
+            articleElement.style.flexWrap = 'wrap'; 
+            
+           
+            const imageDiv = document.createElement('div');
+            imageDiv.style.flex = '1';
+            imageDiv.style.order = '1';  
+            imageDiv.style.marginRight = '150px';  
+
+            if (article.imageUrl) {
+                const imagePath = `http://localhost:8080/ui/php/${sanitizeHtml(article.imageUrl)}`;
+                imageDiv.innerHTML = `
+                    <img src="${imagePath}" alt="Article Image"
+                         style="max-width: 100%; height: auto; border-radius: 8px;"
+                         onerror="this.onerror=null; this.src='http://localhost:8080/ui/php/uploads/404.jpg';">
+                `;
+            } else {
+                imageDiv.innerHTML = `<p><em>No image uploaded for this article.</em></p>`;
+            }
+
+           
+            const textDiv = document.createElement('div');
+            textDiv.style.flex = '2';
+            textDiv.style.order = '2';  
+
+            textDiv.innerHTML = `
                 <h3>${sanitizeHtml(article.title)}</h3>
                 <p>${sanitizeHtml(article.content)}</p>
                 <p><strong>Author:</strong> ${sanitizeHtml(article.author)}</p>
                 <p><strong>Date:</strong> ${new Date(article.date).toLocaleString()}</p>
             `;
-
-            // Append the article to the container
+            
+            
+            articleElement.appendChild(imageDiv);
+            articleElement.appendChild(textDiv);
             articlesDiv.appendChild(articleElement);
 
-            // Add a separator (line) between articles, except after the last one
             if (index < articles.length - 1) {
                 const separator = document.createElement('hr');
                 articlesDiv.appendChild(separator);
             }
         });
+
+        const lastArticle = articles[articles.length - 1];
+        if (lastArticle && lastArticle.imageUrl) {
+            const imgPreview = document.getElementById("imagePreview");
+            imgPreview.src = 'http://localhost:8080/ui/php/uploads/' + lastArticle.imageUrl;
+            imgPreview.style.display = "block";
+        }
+
     } else {
-        articlesDiv.innerHTML = '<p>No articles found.</p>';
+        articlesDiv.innerHTML += '<p>No articles found.</p>';
     }
 }
 
-// Clear form fields by their IDs
-function clearFormFields(fieldIds) {
-    fieldIds.forEach(id => {
-        const field = document.getElementById(id);
-        if (field) field.value = '';
-    });
-}
 
-// Sanitize HTML to prevent XSS attacks
+
+
 function sanitizeHtml(html) {
     const div = document.createElement('div');
     div.textContent = html;
     return div.innerHTML;
 }
 
-// Toggle the visibility of the search box
 function toggleSearchBox() {
     const searchBox = document.getElementById('searchBox');
-    searchBox.style.display = searchBox.style.display === 'block' ? 'none' : 'block';
+    if (searchBox) {
+        searchBox.style.display = (searchBox.style.display === 'block' ? 'none' : 'block');
+    }
 }
 
-// Perform search based on user input
 function performSearch() {
     const searchInput = document.getElementById('searchInput').value.trim();
     if (searchInput) {
@@ -140,21 +234,18 @@ function performSearch() {
     }
 }
 
-// Open the sidebar
 function openNav() {
     const sidebar = document.getElementById('mySidebar');
     sidebar.style.width = '250px';
-    document.body.classList.add('sidebar-open'); // Add a class to detect clicks outside
+    document.body.classList.add('sidebar-open');
 }
 
-// Close the sidebar
 function closeNav() {
     const sidebar = document.getElementById('mySidebar');
     sidebar.style.width = '0';
     document.body.classList.remove('sidebar-open');
 }
 
-// Hide sidebar and search when clicking outside
 document.addEventListener('click', (event) => {
     const sidebar = document.getElementById('mySidebar');
     const searchBox = document.getElementById('searchBox');
@@ -164,12 +255,12 @@ document.addEventListener('click', (event) => {
         closeNav();
     }
 
-    if (searchBox.style.display === 'block' && !searchBox.contains(event.target) && !event.target.closest('.search-icon')) {
+    if (searchBox && searchBox.style.display === 'block' &&
+        !searchBox.contains(event.target) && !event.target.closest('.search-icon')) {
         searchBox.style.display = 'none';
     }
 });
 
-// Initialize dropdown functionality
 function initializeDropdowns() {
     document.querySelectorAll('.dropdown').forEach(dropdown => {
         const button = dropdown.querySelector('.dropbtn');
@@ -184,19 +275,24 @@ function initializeDropdowns() {
         });
     });
 }
+document.addEventListener('click', (event) => {
+    const uploadForm = document.getElementById('uploadForm');
+    const toggleLink = document.getElementById('uploadToggleLink');
 
-// Initialize the page after DOM content is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    const learnMoreBtn = document.getElementById('learnMoreBtn');
+    if (
+        uploadForm &&
+        uploadForm.style.display === 'block' &&
+        !uploadForm.contains(event.target) &&
+        event.target !== toggleLink
+    ) {
+        uploadForm.style.display = 'none';
+    }
+});
 
-    // Event listener for the "Learn More" button
-    learnMoreBtn.addEventListener('click', () => {
-        alert('Thank you for exploring this UI!');
-    });
 
-    // Initialize dropdowns
-    initializeDropdowns();
 
-    // Fetch and display articles
-    fetchArticles();
+
+document.addEventListener('DOMContentLoaded', function () {
+    fetchArticles();  
+    initializeDropdowns(); 
 });
